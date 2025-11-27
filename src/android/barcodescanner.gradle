@@ -1,12 +1,19 @@
-repositories{
-    jcenter()
-    flatDir{
+repositories {
+    // jcenter() is dead – use current repos
+    google()
+    mavenCentral()
+    flatDir {
+        // still use the bundled AAR
         dirs 'libs'
     }
 }
 
 dependencies {
-    compile(name:'barcodescanner-release-2.1.5', ext:'aar')
+    // Old support-v4 from Google Maven; works with the AAR and jetifier
+    implementation 'com.android.support:support-v4:28.0.0'
+
+    // Gradle 7/8-style dependency on the AAR
+    implementation(name: 'barcodescanner-release-2.1.5', ext: 'aar')
 }
 
 android {
